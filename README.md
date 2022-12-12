@@ -1,6 +1,6 @@
-![58rus7l](https://user-images.githubusercontent.com/20172602/207116664-d4ca4d4c-cb51-452a-bf97-7e2bc2365fd5.jpeg)
-
 # c64-rc2014 Keyboard Adapter
+
+![58rus7l](https://user-images.githubusercontent.com/20172602/207116664-d4ca4d4c-cb51-452a-bf97-7e2bc2365fd5.jpeg)
 
 This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It is currently using P-LAB Appledore PCB; A serial output header must be added at this time until/unless the PCB is revised. Baud is hard coded currently at 115200 but you can set it as you see fit in the arduino sketch if your system is running at a different clock speed or if you are using the dual clock module to adjust a secondary baud rate. This assumes 'defaults' of the RC2014 Pro. 
 
