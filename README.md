@@ -14,7 +14,7 @@ NOTE ABOUT RESET USING RESTORE KEY: I used a pin on the Pi serial module that is
 
 In the firmware several negative values for special keys are converted to positive values. I left these in the comments so you may move things like the ctrl-c function around. RESTORE/RESET cannot be moved on the key map, it uses an electical circuit on the appledore, not code. Version 1.1 of the Appledore PCB has a reset button present on the actual PCB but I have not built that yet (No reason to believe it would not work).
 
-Full albunm of photos:
+Full album of photos:
 https://imgur.com/a/SZrAeKl
 
 Video of functionality:
