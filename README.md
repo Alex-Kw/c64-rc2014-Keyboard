@@ -26,3 +26,4 @@ In the Arduino software simply load the sketch, select the correct port/device, 
 
 Connecting:
 You built a RC2014... Connect it to the serial bus ;)
+hint: The NANO pins are misleadingly labelled, RX0 goes to RX not TX.
