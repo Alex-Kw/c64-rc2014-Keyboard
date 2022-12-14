@@ -18,7 +18,7 @@ An example of remapping the keys which produce negative values is that F1 and F2
 
 Up arrow mapped as ^
 
-RUN STOP mapped as Ctrl-C
+RUN STOP mapped as Ctrl-C which will break out of BASIC loops.
 
 CLR/HOME mapped as Ctrl-L which will clear CPM; Known issue it will not clear BASIC, I am working on that. 
 
