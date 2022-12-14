@@ -267,14 +267,21 @@ void loop() // main keyboard scanning loop
 //Commodore Key -121
 //RUN/STOP:  -79 (mapped as ctrl-C)
 //INST/DEL -44 (-47 with shift) both mapped as backspace
-//CLR/HOME is -46 mapped as  3 right now (CRTL-C)
+//CLR/HOME is -46 mapped as  12 right now (CRTL-L / CPM CLEAR)
 
 void outChar() {
 
-  //CLRSCR as ctrl-C / ETX
+  //CLRSCR as CPM Clear / Should work for MBASIC but does not want to
   if ((keyDown[keyPos]) == -46)
   {
-    keyDown[keyPos] = 3;
+    keyDown[keyPos] = 12;
+  }
+
+  //CLRSCR values TEST BUTTON at F7 // does not work for MBASIC: 10, 11, 12, 26, 0. 
+  //Currently leaving this at 10. / LF
+  if ((keyDown[keyPos]) == -56)
+  {
+    keyDown[keyPos] = 10;
   }
 
   //RUN STOP as ctrl-C / ETX
@@ -334,6 +341,27 @@ void outChar() {
     }
     Serial.print(char(keyDown[keyPos]));
     //Serial.println(keyDown[keyPos]);
+
+  //Print Trailing characters
+
+   //This really should work for MBASIC, PRINT CHR$(12); works at BASIC prompt. 
+   //Currently this clears CPM but not MBASIC. The additonal semicolon will make this cleaner on MBASIC if it can be fixed
+   //Send an additional semicolon if clearing screen (this part works, commented out until we can actually clear the screen in MBASIC)
+   
+   //if ((keyDown[keyPos]) == 10)
+   //{
+     //delayMicroseconds(100);
+     //keyDown[keyPos] = 59;
+     //Serial.print(char(keyDown[keyPos]));
+   //} 
+
+   //CR after CPM Clear
+   if ((keyDown[keyPos]) == 12)
+   {
+     delayMicroseconds(100);
+     keyDown[keyPos] = 13;
+     Serial.print(char(keyDown[keyPos]));
+   }
 
     /*pinMode(9, OUTPUT);
       pinMode(8, OUTPUT);
