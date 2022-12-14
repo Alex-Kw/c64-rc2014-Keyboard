@@ -342,18 +342,22 @@ void outChar() {
     Serial.print(char(keyDown[keyPos]));
     //Serial.println(keyDown[keyPos]);
 
-  //Print Trailing characters
+  //Print Trailing characters / Macros
 
    //This really should work for MBASIC, PRINT CHR$(12); works at BASIC prompt. 
-   //Currently this clears CPM but not MBASIC. The additonal semicolon will make this cleaner on MBASIC if it can be fixed
-   //Send an additional semicolon if clearing screen (this part works, commented out until we can actually clear the screen in MBASIC)
-   
-   //if ((keyDown[keyPos]) == 10)
-   //{
-     //delayMicroseconds(100);
+   //Currently when sent as a char this clears CPM but not MBASIC. 
+   //Send an additional semicolon if clearing screen in MBASIC
+
+   //BASIC Clearscreen macro on F7 to type this out
+   //since keyPos 12 works in CPM but not BASIC over serial
+   if ((keyDown[keyPos]) == 10)
+   {
      //keyDown[keyPos] = 59;
-     //Serial.print(char(keyDown[keyPos]));
-   //} 
+     Serial.write("PRINT CHR$(12);");
+     delayMicroseconds(100);
+     keyDown[keyPos] = 13;
+     Serial.print(char(keyDown[keyPos]));
+   } 
 
    //CR after CPM Clear
    if ((keyDown[keyPos]) == 12)
