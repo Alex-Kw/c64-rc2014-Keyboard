@@ -17,8 +17,11 @@ In the firmware several negative values for special keys are converted to positi
 An example of remapping the keys which produce negative values is that F1 and F2 have now been remapped to toggle a soft CAPSLOCK mode. This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock [which affects just alpha characters] is very useful for programming in BASIC in uppercase without miskeying symbols or numbers. The keyboard boots in standard mode, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
 
 Up arrow mapped as ^
+
 RUN STOP mapped as Ctrl-C
+
 CLR/HOME mapped as Ctrl-L which will clear CPM; Known issue it will not clear BASIC, I am working on that. 
+
 
 Full album of photos:
 https://imgur.com/a/SZrAeKl
