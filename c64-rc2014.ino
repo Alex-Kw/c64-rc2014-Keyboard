@@ -56,6 +56,7 @@ int windowsShift;
 int DefaultKBMode = 1;                            // Select 0 For Windows Mode On startup or 1 for C64 Mode
 int USKeyboard = 1;                               // Select 1 for US Keyboard or 0 For EU
 int sendingCharOut = 0;
+int capslock = 0;                                 // Variable for a soft caps lock, since the physical one affects symbols on the number row.
 
 char keyMapUS[216] = {
 
@@ -306,6 +307,16 @@ void outChar() {
     keyDown[keyPos] = 94;
   }
 
+  //Set CapsLock with F1
+     if ((keyDown[keyPos]) == -62) {
+     capslock = 1;
+  }
+
+    //UnSet CapsLock with F2
+     if ((keyDown[keyPos]) == -61) {
+     capslock = 0;
+  }
+
   if (keyDown[keyPos] > 0 && keyDown[keyPos] <= 127) {
     //if (keyDown[keyPos] != 0 ) {
 
@@ -315,11 +326,12 @@ void outChar() {
       keyDown[keyPos] = 13;
     }
 
-    //to uppercase
-    //if (keyDown[keyPos] >= 97 && keyDown[keyPos] <= 122) {
-     // keyDown[keyPos] = keyDown[keyPos] - 32;
-    //}
-
+    //to uppercase if capslock is set.
+    if (capslock == 1) {
+    if (keyDown[keyPos] >= 97 && keyDown[keyPos] <= 122) {
+      keyDown[keyPos] = keyDown[keyPos] - 32;
+    }
+    }
     Serial.print(char(keyDown[keyPos]));
     //Serial.println(keyDown[keyPos]);
 
