@@ -14,6 +14,8 @@ NOTE ABOUT RESET USING RESTORE KEY: I used a pin on the Pi serial module that is
 
 In the firmware several negative values for special keys are converted to positive values. I left these in the comments so you may move things like the ctrl-c function around. RESTORE/RESET cannot be moved on the key map, it uses an electical circuit on the appledore, not code. Version 1.1 of the Appledore PCB has a reset button present on the actual PCB but I have not built that yet (No reason to believe it would not work).
 
+Another example of remapping is that F1 and F2 have now been remapped to toggle a soft CAPSLOCK mode. This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock [which affects just alpha characters] is very useful for programming in BASIC in uppercase without miskeying symbols or numbers. The keyboard boots in standard mode, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
+
 Full album of photos:
 https://imgur.com/a/SZrAeKl
 
