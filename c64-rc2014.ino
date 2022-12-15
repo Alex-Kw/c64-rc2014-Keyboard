@@ -256,10 +256,10 @@ void loop() // main keyboard scanning loop
 
 //Key codes handy for remapping
 //
-//F1 -62 (F2 -61)
-//F3 -60 (F4 -59)
-//F5 -58  (F6 -57)
-//F7 -56 (F8 -55)
+//F1 -62 (F2 -61) (Enable / Disable soft capslock respectively)
+//F3 -60 (F4 -59) (type CPM macro)
+//F5 -58  (F6 -57) (type MBASIC macro)
+//F7 -56 (F8 -55) (BASIC Clear Macro) (OUT 0,0)
 //
 //CRSR UP/DN -39
 //CRSR L/R -41
@@ -271,17 +271,50 @@ void loop() // main keyboard scanning loop
 
 void outChar() {
 
-  //CLRSCR as CPM Clear / Should work for MBASIC but does not want to
+  //Remaps and Macros
+
+   //Type CPM
+   if ((keyDown[keyPos]) == -60)
+   {
+     Serial.write("CPM");
+     delayMicroseconds(100);
+     keyDown[keyPos] = 13;  //CR 
+     Serial.print(char(keyDown[keyPos]));  //Send CR
+   } 
+
+   //Type MBASIC
+   if ((keyDown[keyPos]) == -58)
+   {
+     Serial.write("MBASIC");
+     delayMicroseconds(100);
+     keyDown[keyPos] = 13;  //CR 
+     Serial.print(char(keyDown[keyPos]));  //Send CR
+   } 
+
+   //BASIC Clearscreen macro on F7 to type this out
+   //since keyPos 12 works in CPM but not BASIC over serial
+   if ((keyDown[keyPos]) == -56)
+   {
+     //keyDown[keyPos] = 59;
+     Serial.write("PRINT CHR$(12);");
+     delayMicroseconds(100);
+     keyDown[keyPos] = 13;  //CR 
+     Serial.print(char(keyDown[keyPos]));  //Send CR
+   } 
+
+   //F8 reset digital output ID 0 from BASIC
+   if ((keyDown[keyPos]) == -55)
+   {
+     Serial.write("OUT 0 , 0");
+     delayMicroseconds(100);
+     keyDown[keyPos] = 13;  //CR 
+     Serial.print(char(keyDown[keyPos]));  //Send CR
+   } 
+
+  //CLRSCR as CPM Clear / Should work for MBASIC but does not want to, hence the above macro.
   if ((keyDown[keyPos]) == -46)
   {
     keyDown[keyPos] = 12;
-  }
-
-  //CLRSCR values TEST BUTTON at F7 // does not work for MBASIC: 10, 11, 12, 26, 0. 
-  //Currently leaving this at 10. / LF
-  if ((keyDown[keyPos]) == -56)
-  {
-    keyDown[keyPos] = 10;
   }
 
   //RUN STOP as ctrl-C / ETX
@@ -342,22 +375,7 @@ void outChar() {
     Serial.print(char(keyDown[keyPos]));
     //Serial.println(keyDown[keyPos]);
 
-  //Print Trailing characters / Macros
-
-   //This really should work for MBASIC, PRINT CHR$(12); works at BASIC prompt. 
-   //Currently when sent as a char this clears CPM but not MBASIC. 
-   //Send an additional semicolon if clearing screen in MBASIC
-
-   //BASIC Clearscreen macro on F7 to type this out
-   //since keyPos 12 works in CPM but not BASIC over serial
-   if ((keyDown[keyPos]) == 10)
-   {
-     //keyDown[keyPos] = 59;
-     Serial.write("PRINT CHR$(12);");
-     delayMicroseconds(100);
-     keyDown[keyPos] = 13;
-     Serial.print(char(keyDown[keyPos]));
-   } 
+  //Print Trailing characters 
 
    //CR after CPM Clear
    if ((keyDown[keyPos]) == 12)

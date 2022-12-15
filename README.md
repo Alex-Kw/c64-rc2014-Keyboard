@@ -14,15 +14,20 @@ NOTE ABOUT RESET USING RESTORE KEY: I used a pin on the Pi serial module that is
 
 In the firmware several negative values for special keys are converted to positive values. I left these in the comments so you may move things like the ctrl-c (RUN STOP) function around. RESTORE/RESET cannot be moved on the key map, it uses an electical circuit on the appledore, not code. Version 1.1 of the Appledore PCB has a reset button present on the actual PCB but I have not used that revision for an RC2014 yet (No reason to believe it would not work).
 
-F1 and F2 have now been mapped to toggle a soft CAPSLOCK mode. This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock [which affects just alpha characters] is very useful for programming in BASIC in uppercase without miskeying symbols or numbers. The keyboard boots in standard mode, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
+SOFT CAPSLOCK: F1 and F2 toggle a soft CAPSLOCK mode. This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock [which affects just alpha characters] is very useful for programming in BASIC in uppercase without miskeying symbols or numbers. The keyboard boots in mixed case, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
 
+Additional mappings and macros:
+
+Left arrow as ESC
 Up arrow mapped as ^
-
 RUN STOP mapped as Ctrl-C which will break out of BASIC loops.
-
 CLR/HOME mapped as Ctrl-L which will clear screen at CP/M Prompt
+F3 - macro to type 'CPM' and a carriage return
+F5 - macro to type 'MBASIC' and a carriage return
+F7 - macro which types out a command to clear the screen in MBASIC, and a carriage return.
+F8 - macro to type 'OUT 0 , 0' and a carriage return (turn off digital output 0 in MBASIC) 
 
-F7 is a macro which types out the command to clear the screen in MBASIC, and a carriage return.
+Booting up an RC2014 with SCM and getting to BASIC is then a matter of a few keypresses. Power on the system, press 'RESTORE' to reset it, and then pressing F3, F5, F7 in order will launch CPM, MBASIC, and clear the screen (on a system with Compact flash and the necessary software). 
 
 Full album of photos:
 https://imgur.com/a/SZrAeKl
