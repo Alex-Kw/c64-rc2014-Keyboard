@@ -18,14 +18,14 @@ SOFT CAPSLOCK: F1 and F2 toggle a soft CAPSLOCK mode. This was added because the
 
 Additional mappings and macros:
 
-Left arrow as ESC
-Up arrow mapped as ^
-RUN STOP mapped as Ctrl-C which will break out of BASIC loops.
-CLR/HOME mapped as Ctrl-L which will clear screen at CP/M Prompt
-F3 - macro to type 'CPM' and a carriage return
-F5 - macro to type 'MBASIC' and a carriage return
-F7 - macro which types out a command to clear the screen in MBASIC, and a carriage return.
-F8 - macro to type 'OUT 0 , 0' and a carriage return (turn off digital output 0 in MBASIC) 
+- Left arrow as ESC
+- Up arrow mapped as ^
+- RUN STOP mapped as Ctrl-C which will break out of BASIC loops.
+- CLR/HOME mapped as Ctrl-L which will clear screen at CP/M Prompt
+- F3 - macro to type 'CPM' and a carriage return
+- F5 - macro to type 'MBASIC' and a carriage return
+- F7 - macro which types out a command to clear the screen in MBASIC, and a carriage return.
+- F8 - macro to type 'OUT 0 , 0' and a carriage return (turn off digital output 0 in MBASIC) 
 
 Booting up an RC2014 with SCM and getting to BASIC is then a matter of a few keypresses. Power on the system, press 'RESTORE' to reset it, and then pressing F3, F5, F7 in order will launch CPM, MBASIC, and clear the screen (on a system with Compact flash and the necessary software). 
 
