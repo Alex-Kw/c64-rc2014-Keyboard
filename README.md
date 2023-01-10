@@ -1,6 +1,7 @@
 # c64-rc2014 Keyboard Adapter
 
-![58rus7l](https://user-images.githubusercontent.com/20172602/207116664-d4ca4d4c-cb51-452a-bf97-7e2bc2365fd5.jpeg)
+![9GUImoU](https://user-images.githubusercontent.com/20172602/211600381-6906a9a3-3090-48c3-ba9f-f7db9339cd67.jpeg)
+![9QHPLzM](https://user-images.githubusercontent.com/20172602/211600421-cd21f051-5454-4a4b-aee5-e41381c1cbc0.jpeg)
 
 This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It's intended to make using BASIC and CP/M from a physical terminal a reasonably good experience.
 
