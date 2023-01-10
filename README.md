@@ -37,8 +37,11 @@ DON'T CONNECT A RESET WIRE UNLESS YOU KNOW WHAT YOU ARE DOING. When you connect 
 
 In the firmware, several negative values for special keys are converted to positive values. I left these in the comments so you may move things like the ctrl-c (RUN STOP) function around. RESTORE/RESET cannot be moved on the key map, it uses an electical circuit on the appledore, not code. Version 1.1 of the Appledore PCB has a reset button present on the actual PCB but I have not used that revision for an RC2014 yet (No reason to believe it would not work).
 
-Full album of photos (prototype, final PCB revision to be photoed soon):
+Full album of photos (prototype):
 https://imgur.com/a/SZrAeKl
+
+Photos of Finished 1.1a Ver:
+https://imgur.com/a/DErxG2J
 
 Video of functionality:
 https://www.youtube.com/watch?v=GENigrzKh0U
