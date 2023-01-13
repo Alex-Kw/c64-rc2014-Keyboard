@@ -257,7 +257,7 @@ void loop() // main keyboard scanning loop
 //Key codes handy for remapping
 //
 //F1 -62 (F2 -61) (Enable / Disable soft capslock respectively)
-//F3 -60 (F4 -59) (type CPM macro)
+//F3 -60 (F4 -59) (type CPM macro) (ctrl-y for qterm)
 //F5 -58  (F6 -57) (type MBASIC macro)
 //F7 -56 (F8 -55) (BASIC Clear Macro) (OUT 0,0)
 //
@@ -321,6 +321,12 @@ void outChar() {
   if ((keyDown[keyPos]) == -79)
   {
     keyDown[keyPos] = 3;
+  }
+
+  //F4 as ctrl-Y / ctrl char for qterm
+  if ((keyDown[keyPos]) == -59)
+  {
+    keyDown[keyPos] = 25;
   }
 
   //LEFT ARROW mapped as ESC
