@@ -16,6 +16,7 @@ Additional mappings and macros:
 - RUN STOP mapped as Ctrl-C which will break out of BASIC loops.
 - CLR/HOME mapped as Ctrl-L which will clear screen at CP/M Prompt
 - F3 - macro to type 'CPM' and a carriage return
+- F4 - Type escape char for qterm (ctrl-y). Doesn't display, press ? after for help.
 - F5 - macro to type 'MBASIC' and a carriage return
 - F7 - macro which types out a command to clear the screen in MBASIC, and a carriage return.
 - F8 - macro to type 'OUT 0 , 0' and a carriage return (turn off digital output 0 in MBASIC) 
