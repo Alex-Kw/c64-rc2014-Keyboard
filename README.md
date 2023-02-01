@@ -57,3 +57,5 @@ Connecting:
 You built a RC2014... Connect it to the serial bus using all 6 pins of the serial headers (in order).
 
 hint: The NANO pins are misleadingly labelled, RX0 goes to RX not TX, at least on my Pi serial module. If you get no input from the keyboard after resetting your RC2014 try swapping RX/TX. 
+
+RC2014 is a trademark belonging to RFC2795 Ltd, this project is not affiliated with RFC2795 and is not an RC2014 product; only RC2014 compatible.
