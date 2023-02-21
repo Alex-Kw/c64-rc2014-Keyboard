@@ -57,6 +57,7 @@ int DefaultKBMode = 1;                            // Select 0 For Windows Mode O
 int USKeyboard = 1;                               // Select 1 for US Keyboard or 0 For EU
 int sendingCharOut = 0;
 int capslock = 0;                                 // Variable for a soft caps lock, since the physical one affects symbols on the number row.
+int ctrlkey = 0;                                  // Ctrl Key has not been pressed; it registers as a single press.
 
 char keyMapUS[216] = {
 
@@ -363,6 +364,24 @@ void outChar() {
      capslock = 0;
   }
 
+  //Set Ctrl mode with Commodore Key
+     if ((keyDown[keyPos]) == -121) {
+     ctrlkey = 1;
+  }
+
+//  //Free Ctrl mode with CTRL Key
+//     if ((keyDown[keyPos]) == -128) {
+//     ctrlkey = 0;
+//  }
+
+  //Translation table if Ctrl or Commodore key has been pressed
+    if (ctrlkey == 1 && keyDown[keyPos] != 0 && keyDown[keyPos] != -121) {
+    keyDown[keyPos] = keyDown[keyPos] - 96;
+  //Free ctrl flag
+    ctrlkey = 0;  
+    }
+
+    //Positive values from here on, may need to swap these lines for debugging.
   if (keyDown[keyPos] > 0 && keyDown[keyPos] <= 127) {
     //if (keyDown[keyPos] != 0 ) {
 
@@ -378,6 +397,8 @@ void outChar() {
       keyDown[keyPos] = keyDown[keyPos] - 32;
     }
     }
+
+    //The real sending, swap these to debug key press values 
     Serial.print(char(keyDown[keyPos]));
     //Serial.println(keyDown[keyPos]);
 
