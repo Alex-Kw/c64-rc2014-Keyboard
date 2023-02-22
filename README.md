@@ -8,7 +8,8 @@ This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It
 Features:
 
 - SOFT CAPSLOCK: F1 and F2 toggle a soft CAPSLOCK mode. This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock [which affects just alpha characters] is very useful for programming in BASIC in uppercase. The keyboard boots in mixed case, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
-- CTRL key codes for CTRL-[A-Z] using Commodore key as a functional CTRL key. Useful for RomWBW and advanced CP/M usage.
+- CTRL key codes for CTRL-[A-Z] use the Commodore key as a functional CTRL key. This is quite useful for RomWBW and advanced CP/M usage.
+- CTRL key codes work with SOFT CAPSLOCK enabled or disabled. The physical shift key and shift lock still affect the keypress (I.E. COMMODORE+C will submit a break with or without soft capslock, however, if shift lock or a shift key is held down, it becomes a different key value).
 
 Additional mappings and macros:
 
@@ -37,7 +38,10 @@ The above mod is not needed on the version 1.1a Appledore PCB.
 RESETTING THE RC2014, AND A NOTE ABOUT RESET USING RESTORE KEY: 
 DON'T CONNECT A RESET WIRE UNLESS YOU KNOW WHAT YOU ARE DOING. When you connect the Appledore 1.1a to your RC2014, the Appledore will have reset on pin 6, but the RC2014 will not have anything on its side wired to that pin. To install a reset wire, connect the reset pin of the bus (pin 20 on a RC2014 Pro) to an unused pin on the serial header (pin 6) of the RC2014 PCB you use for serial input. This could be a Dual SIO or Pi terminal for example. On the Appledore, the reset pin goes to the reset output OF THE ASCII TTL header. If you are wiring things yourself, Do -not- connect the bus pin to the Nano's RST pin. You can also in concept simply connect the ASCII TTL RST pin on the Appledore PCB straight to pin 20 of the bus (RST) of your RC2014, and the RESTORE key on the C64 keyboard will pull the pin low to trigger a reset. Ver 1.1a of the Appledore PCB provides the correct RESET signal on pin 6 of the serial header, an unused pin on both the pi and dual sio modules as far as the schematics report. 
 
-In the firmware, several negative values for special keys are converted to positive values. I left these in the comments so you may move things like the ctrl-c (RUN STOP) function around. RESTORE/RESET cannot be moved on the key map, it uses an electical circuit on the appledore, not code. Version 1.1 of the Appledore PCB has a reset button present on the actual PCB but I have not used that revision for an RC2014 yet (No reason to believe it would not work).
+In the firmware, several negative values for special keys are converted to positive values. I left these in the comments so you may move things like the ctrl-c (RUN STOP) function around. RESTORE/RESET cannot be moved on the key map, it uses an electical circuit on the appledore, not code. Version 1.1 of the Appledore PCB has a reset button present on the actual PCB. This works in addition to the RESTORE key to reset the system.
+
+The "Apple II" problem:
+When Apple updated the Apple II keyboard for the IIe, the reset button was moved away from an area where it could cause accidental resets. If you don't connect a reset wire from the Appledore to your RC2014 in the first place, this doesn't matter. However, if you do want reset functionality on the Appledore PCB pusbutton, but not on the commodore keyboard, cut/remove pin 3 of the keyboard connector (the first pin AFTER the key slot) where it attaches to the appledore, or cut the trace. Then, the reset pushbutton on the Appledore will work, but you won't accidentally reset your system with the RESTORE key. 
 
 Full album of photos (prototype):
 https://imgur.com/a/SZrAeKl
@@ -52,7 +56,7 @@ Instructions:
 Build version 1.1a of the AppleDore PCB and install the firmware from this repo. Keep in mind this intends for the Arduino NANO to get power from the RC2014 Serial port. On the Pi serial module +5 is present by default, on the dual SIO you must install a jumper to enable its presence. Specifically For the RC2014 Pro with a Pi serial module, reset functionality is added by a jumper wire on the Pi terminal card. Wire bus pin 20 to pin 6 of the serial header on the pi terminal PCB.  
 
 Programming:
-In the Arduino software simply load the sketch, select the correct port/device, and use Arduino as ISP. Nothing fancy, it should 'upload' rather quickly
+In the Arduino software simply load the sketch, select the correct port/device, and use Arduino as ISP. Nothing fancy, it should 'upload' rather quickly. If it doesn't work, try the 'old bootloader' option for the NANO's processor, located in the board select menus of the Arduino IDE.
 
 Connecting:
 You built a RC2014... Connect it to the serial bus using all 6 pins of the serial headers (in order).
