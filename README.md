@@ -3,11 +3,12 @@
 ![gOofLT3](https://user-images.githubusercontent.com/20172602/211600565-83e920cd-84e0-4166-a966-7464574937f7.jpeg)
 ![9QHPLzM](https://user-images.githubusercontent.com/20172602/211600421-cd21f051-5454-4a4b-aee5-e41381c1cbc0.jpeg)
 
-This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It's intended to make using BASIC and CP/M from a physical terminal a reasonably good experience.
+This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It's intended to make using BASIC, CP/M, and RomWBW from a physical terminal a good experience.
 
 Features:
 
 - SOFT CAPSLOCK: F1 and F2 toggle a soft CAPSLOCK mode. This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock [which affects just alpha characters] is very useful for programming in BASIC in uppercase. The keyboard boots in mixed case, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
+- CTRL key codes for CTRL-[A-Z] using Commodore key as a functional CTRL key. Useful for RomWBW and advanced CP/M usage.
 
 Additional mappings and macros:
 
