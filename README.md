@@ -43,6 +43,9 @@ In the firmware, several negative values for special keys are converted to posit
 The "Apple II" problem:
 When Apple updated the Apple II keyboard for the IIe, the reset button was moved away from an area where it could cause accidental resets. If you don't connect a reset wire from the Appledore to your RC2014 in the first place, this doesn't matter. However, if you do want reset functionality on the Appledore PCB pusbutton, but not on the commodore keyboard, cut/remove pin 3 of the keyboard connector (the first pin AFTER the key slot) where it attaches to the appledore, or cut the trace. Then, the reset pushbutton on the Appledore will work, but you won't accidentally reset your system with the RESTORE key. 
 
+NOTES ABOUT CTRL KEY USAGE:
+As noted above, CTRL-[A-Z] can be sent with Commodore key + [A-Z]. How this actually works is the keypress of the COMMODORE key sets a flag for ctrlkey in the key scanning loop. The next key pressed is offset in decimal value to make it a ctrl keycode. You can technically tap COMMODORE and then your Alpha key, but holding it as a combo and releasing both as you would do on a normal keyboard will work transparently. I only note this here in case you bump the commodore key; your next key will be CTRL+[KEY]. If you press COMMODORE and you do not want to submit a CTRL-[KEY] press, You can cancel this (counter-intuitively) by pressing the ctrl button itself to cancel ctrlkey mode.
+
 Full album of photos (prototype):
 https://imgur.com/a/SZrAeKl
 
