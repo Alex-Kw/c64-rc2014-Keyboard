@@ -8,7 +8,9 @@ This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It
 # Features:
 
 **- SOFT CAPSLOCK: F1 and F2 toggle a soft CAPSLOCK mode.** This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock affects just alpha characters, and is very useful for programming in BASIC in uppercase. The keyboard boots in mixed case, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
+
 **- CTRL key codes for CTRL-[A-Z]** use the Commodore key as a functional CTRL key. This is quite useful for RomWBW and advanced CP/M usage.
+
 **- CTRL key codes work with SOFT CAPSLOCK enabled or disabled.** Note: if shift lock or a shift key is held down, it becomes a different key value.
 
 # Additional mappings and macros:
