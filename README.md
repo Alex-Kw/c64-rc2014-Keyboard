@@ -19,6 +19,7 @@ This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It
 - Up arrow mapped as ^
 - RUN STOP mapped as Ctrl-C which will break out of BASIC loops.
 - CLR/HOME mapped as Ctrl-L which will clear screen at CP/M Prompt
+- CRSR keys mapped for Wordstar Ctrl- squences
 - F3 - macro to type 'CPM' and a carriage return
 - F4 - Type escape char for qterm (ctrl-y). Doesn't display, press ? after for help.
 - F5 - macro to type 'MBASIC' and a carriage return
