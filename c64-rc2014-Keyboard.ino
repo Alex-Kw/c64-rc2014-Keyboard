@@ -262,8 +262,8 @@ void loop() // main keyboard scanning loop
 //F5 -58  (F6 -57) (type MBASIC macro)
 //F7 -56 (F8 -55) (BASIC Clear Macro) (OUT 0,0)
 //
-//CRSR UP/DN -39
-//CRSR L/R -41
+//CRSR DN/UP -39 / -38?
+//CRSR R/L -41 / -40? 
 //Ctrl -128
 //Commodore Key -121
 //RUN/STOP:  -79 (mapped as ctrl-C)
@@ -381,16 +381,40 @@ void outChar() {
     ctrlkey = 0;  
     }
 
-    //Positive values from here on, may need to swap these lines for debugging.
-  if (keyDown[keyPos] > 0 && keyDown[keyPos] <= 127) {
-    //if (keyDown[keyPos] != 0 ) {
-
-
     //CR
     if ((keyDown[keyPos]) == 19) {
       keyDown[keyPos] = 13;
     }
 
+ // WOOOOORDSTAR
+   //Cursor Down ctrl-x
+     if ((keyDown[keyPos]) == -39)
+  {
+    keyDown[keyPos] = 24;
+  }
+
+   //Cursor Up ctrl-e
+     if ((keyDown[keyPos]) == -38)
+  {
+    keyDown[keyPos] = 5;
+  }
+
+   //Cursor L ctrl-s
+     if ((keyDown[keyPos]) == -40)
+  {
+    keyDown[keyPos] = 19;         //This must remain after the above CR conversion from 19 to 13.
+  }
+
+   //Cursor R ctrl-d
+     if ((keyDown[keyPos]) == -41)
+  {
+    keyDown[keyPos] = 4;
+  }
+
+    //Positive values from here on, may need to swap these lines for debugging.
+  if (keyDown[keyPos] > 0 && keyDown[keyPos] <= 127) {
+    //if (keyDown[keyPos] != 0 ) {
+    
     //to uppercase if capslock is set.
     if (capslock == 1) {
     if (keyDown[keyPos] >= 97 && keyDown[keyPos] <= 122) {
