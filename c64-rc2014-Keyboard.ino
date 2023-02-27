@@ -57,7 +57,8 @@ int DefaultKBMode = 1;                            // Select 0 For Windows Mode O
 int USKeyboard = 1;                               // Select 1 for US Keyboard or 0 For EU
 int sendingCharOut = 0;
 int capslock = 0;                                 // Variable for a soft caps lock, since the physical one affects symbols on the number row.
-int ctrlkey = 0;                                  // Ctrl Key has not been pressed; it registers as a single press.
+int ctrlkey = 0;                                  // Commodore Key has not been pressed. Note, it registers as a single press unlike Shift.
+int ctrlmode = 0;                                 // Ctrl Key for "latching" Ctrl set
 
 char keyMapUS[216] = {
 
@@ -274,15 +275,6 @@ void outChar() {
 
   //Remaps and Macros
 
-   //Type CPM
-   if ((keyDown[keyPos]) == -60)
-   {
-     Serial.write("CPM");
-     delayMicroseconds(100);
-     keyDown[keyPos] = 13;  //CR 
-     Serial.print(char(keyDown[keyPos]));  //Send CR
-   } 
-
    //Type MBASIC
    if ((keyDown[keyPos]) == -58)
    {
@@ -324,12 +316,6 @@ void outChar() {
     keyDown[keyPos] = 3;
   }
 
-  //F4 as ctrl-Y / ctrl char for qterm
-  if ((keyDown[keyPos]) == -59)
-  {
-    keyDown[keyPos] = 25;
-  }
-
   //LEFT ARROW mapped as ESC
   if ((keyDown[keyPos]) == -78)
   {
@@ -369,21 +355,45 @@ void outChar() {
      ctrlkey = 1;
   }
 
-//  //Free Ctrl mode with CTRL Key
-//     if ((keyDown[keyPos]) == -128) {
-//     ctrlkey = 0;
-//  }
+  //Free temp Ctrl mode (ctrlkey) with CTRL Key
+     if ((keyDown[keyPos]) == -128 ) {
+     ctrlkey = 0;
+  }
 
-  //Translation table if Ctrl or Commodore key has been pressed
-    if (ctrlkey == 1 && keyDown[keyPos] != 0 && keyDown[keyPos] != -121) {
+  //set perm (ctrlmode) only if temp mode not set
+//     if ((keyDown[keyPos]) == -128) {
+//         ctrlmode=1;
+//      }
+ //Translation tables below work, but I need logic here to toggle back and forth.
+ //steal F3/F4 for now
+
+   //Latch CTRL mode with F3
+   if ((keyDown[keyPos]) == -60)
+   {
+     ctrlmode=1;
+   } 
+
+   //Un-Latch CTRL mode with F4
+   if ((keyDown[keyPos]) == -59)
+   {
+     ctrlmode=0;
+   } 
+
+    //CR - Keep above translation tables for CTRL or you will break CTRL-S
+    if ((keyDown[keyPos]) == 19) {
+      keyDown[keyPos] = 13;
+    }
+
+  //Translation table if CTRL key has been pressed (Continue with ctrlmode toggled)
+    if (ctrlmode == 1 && keyDown[keyPos] > 0 && keyDown[keyPos] != -121 && keyDown[keyPos] != -128) {
+    keyDown[keyPos] = keyDown[keyPos] - 96;
+    }
+  
+  //Translation table if Commodore key has been pressed (single key, clear flag)
+    if (ctrlkey == 1 && keyDown[keyPos] > 0 && keyDown[keyPos] != -121 && keyDown[keyPos] != -128) {
     keyDown[keyPos] = keyDown[keyPos] - 96;
   //Free ctrl flag
     ctrlkey = 0;  
-    }
-
-    //CR
-    if ((keyDown[keyPos]) == 19) {
-      keyDown[keyPos] = 13;
     }
 
  // WOOOOORDSTAR
