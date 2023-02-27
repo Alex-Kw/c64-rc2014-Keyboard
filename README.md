@@ -9,24 +9,29 @@ This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It
 
 **- SOFT CAPSLOCK: F1 and F2 toggle a soft CAPSLOCK mode.** This was added because the SHIFT LOCK key is mechanical and affects the number row. The soft caps lock affects just alpha characters, and is very useful for programming in BASIC in uppercase. The keyboard boots in mixed case, F1 enables this special CAPSLOCK mode, and F2 (SHIFT+F1) disables it.
 
-**- CTRL key codes for CTRL-[A-Z]** use the Commodore key as a functional CTRL key. This is quite useful for RomWBW and advanced CP/M usage.
+**- Single press CTRL key codes for CTRL-[A-Z]** use the Commodore key as a functional CTRL key. This is quite useful for RomWBW and advanced CP/M usage.
+
+**- Repeated press CTRL key codes** use a soft latching CTRL mode (F3/F4). Useful for navigating Wordstar or menus with numerous CTRL key functions.
 
 **- CTRL key codes work with SOFT CAPSLOCK enabled or disabled.** Note: if shift lock or a shift key is held down, it becomes a different key value.
 
-# Additional mappings and macros:
+# [Additional] Mappings and macros:
 
 - Left arrow as ESC
 - Up arrow mapped as ^
-- RUN STOP mapped as Ctrl-C which will break out of BASIC loops.
+- RUN STOP mapped as Ctrl-C which will break out of BASIC loops
 - CLR/HOME mapped as Ctrl-L which will clear screen at CP/M Prompt
-- CRSR keys mapped for Wordstar Ctrl- squences
-- F3 - macro to type 'CPM' and a carriage return
-- F4 - Type escape char for qterm (ctrl-y). Doesn't display, press ? after for help.
+- CRSR keys mapped for Wordstar Ctrl- cursor directional movement squences
+- COMMODORE key - Held or not, the next key will be sent as CTRL-[KEY], unless CTRL is pressed to cancel
+- F1 - Soft CAPSlock ON
+- F2 - Soft CAPSlock OFF
+- F3 - Enable Soft Latched CTRL Mode until further notice (until F4 is pressed), for repeated presses of CTRL characters
+- F4 - Disable Soft Latched CTRL Mode (Return to normal Alpha characters)
 - F5 - macro to type 'MBASIC' and a carriage return
-- F7 - macro which types out a command to clear the screen in MBASIC, and a carriage return.
+- F7 - macro which types out a command to clear the screen in MBASIC, and a carriage return
 - F8 - macro to type 'OUT 0 , 0' and a carriage return (turn off digital output 0 in MBASIC) 
 
-Booting an RC2014 with SCM and getting to MBASIC is then a matter of a few keypresses. Power on the system, press 'RESTORE' to reset it, and then pressing F3, F5, F7 in order will launch CPM, MBASIC, and clear the screen (on a system with Compact flash and the necessary software). These macros are in clear text strings and easily changed.
+The macros such as typing MBASIC are in clear text strings and easily changed.
 
 # PCB INFO
 This project is currently using P-LAB Appledore PCB; A serial output header matching the RC2014 is present on Ver 1.1a of this PCB. Serial Baud is hard coded currently at 115200 but you can set it as you see fit in the arduino sketch if your system is running at a different clock speed or if you are using the dual clock module to adjust a secondary baud rate. This baud rate of 115200 assumes 'defaults' of the RC2014 Pro. 
