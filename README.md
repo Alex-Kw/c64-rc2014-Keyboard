@@ -19,8 +19,9 @@ This is an Adaptor to use a Commodore 64 Keyboard with a RC2014 Serial input. It
 
 - Left arrow as ESC
 - Up arrow mapped as ^
+- Pi (Shift+Up) Mapped as ~
 - RUN STOP mapped as Ctrl-C which will break out of BASIC loops
-- CLR/HOME mapped as Ctrl-L which will clear screen at CP/M Prompt
+- CLR/HOME mapped as "CLS" for ZPM.
 - CRSR keys mapped for Wordstar Ctrl- cursor directional movement squences
 - COMMODORE key - Held or not, the next key will be sent as CTRL-[KEY], unless CTRL is pressed to cancel
 - F1 - Soft CAPSlock ON
