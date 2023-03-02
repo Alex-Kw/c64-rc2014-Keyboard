@@ -263,13 +263,13 @@ void loop() // main keyboard scanning loop
 //F5 -58  (F6 -57) (type MBASIC macro)
 //F7 -56 (F8 -55) (BASIC Clear Macro) (OUT 0,0)
 //
-//CRSR DN/UP -39 / -38?
-//CRSR R/L -41 / -40? 
-//Ctrl -128
-//Commodore Key -121
+//CRSR DN/UP -39 / -38 - Wordstar
+//CRSR R/L -41 / -40 - Wordstar
+//Ctrl -128 
+//Commodore Key -121 (Used as CTRL)
 //RUN/STOP:  -79 (mapped as ctrl-C)
 //INST/DEL -44 (-47 with shift) both mapped as backspace
-//CLR/HOME is -46 mapped as  12 right now (CRTL-L / CPM CLEAR)
+//CLR/HOME is -46 mapped as "CLS" for ZPM.
 
 void outChar() {
 
@@ -281,7 +281,7 @@ void outChar() {
      Serial.write("MBASIC");
      delayMicroseconds(100);
      keyDown[keyPos] = 13;  //CR 
-     Serial.print(char(keyDown[keyPos]));  //Send CR
+//     Serial.print(char(keyDown[keyPos]));  //Send CR
    } 
 
    //BASIC Clearscreen macro on F7 to type this out
@@ -292,7 +292,7 @@ void outChar() {
      Serial.write("PRINT CHR$(12);");
      delayMicroseconds(100);
      keyDown[keyPos] = 13;  //CR 
-     Serial.print(char(keyDown[keyPos]));  //Send CR
+//     Serial.print(char(keyDown[keyPos]));  //Send CR
    } 
 
    //F8 reset digital output ID 0 from BASIC
@@ -301,13 +301,16 @@ void outChar() {
      Serial.write("OUT 0 , 0");
      delayMicroseconds(100);
      keyDown[keyPos] = 13;  //CR 
-     Serial.print(char(keyDown[keyPos]));  //Send CR
+//     Serial.print(char(keyDown[keyPos]));  //Send CR
    } 
 
-  //CLRSCR as CPM Clear / Should work for MBASIC but does not want to, hence the above macro.
+  //CLRSCR as ZPM CLS
   if ((keyDown[keyPos]) == -46)
   {
-    keyDown[keyPos] = 12;
+     Serial.write("CLS");
+     delayMicroseconds(100);
+     keyDown[keyPos] = 13;  //CR 
+//     Serial.print(char(keyDown[keyPos]));  //Send CR
   }
 
   //RUN STOP as ctrl-C / ETX
@@ -338,6 +341,12 @@ void outChar() {
   if ((keyDown[keyPos]) == -45)
   {
     keyDown[keyPos] = 94;
+  }
+
+    //SHIFT+ARROW UP (Pi) remapped as "~"
+  if ((keyDown[keyPos]) == -42)
+  {
+    keyDown[keyPos] = 126;
   }
 
   //Set CapsLock with F1
@@ -438,13 +447,13 @@ void outChar() {
 
   //Print Trailing characters 
 
-   //CR after CPM Clear
-   if ((keyDown[keyPos]) == 12)
-   {
-     delayMicroseconds(100);
-     keyDown[keyPos] = 13;
-     Serial.print(char(keyDown[keyPos]));
-   }
+//   //CR after CPM Clear  //Moving to not mess up wordstar / normal ctrl+l
+//   if ((keyDown[keyPos]) == 12)
+//   {
+//     delayMicroseconds(100);
+//     keyDown[keyPos] = 13;
+//     Serial.print(char(keyDown[keyPos]));
+//   }
 
     /*pinMode(9, OUTPUT);
       pinMode(8, OUTPUT);
